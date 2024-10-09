@@ -1,0 +1,228 @@
+{
+  "intelligences": {
+    "musical-rythm": {
+      "subcategories": [
+        {
+          "subcategory": "Performance",
+          "jobs": [
+            {
+              "job_title": "Professional Singer",
+              "job_link": "https://example.com/professional-singer"
+            },
+            {
+              "job_title": "Musician",
+              "job_link": "https://example.com/musician"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Vocal Training",
+              "course_link": "https://example.com/vocal-training",
+              "cost": "INR2000"
+            }
+          ]
+        },
+        {
+          "subcategory": "Teaching",
+          "jobs": [
+            {
+              "job_title": "Music Teacher",
+              "job_link": "https://example.com/music-teacher"
+            },
+            {
+              "job_title": "Choir Director",
+              "job_link": "https://example.com/choir-director"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Music Education Certification",
+              "course_link": "https://example.com/music-education-certification",
+              "cost": "INR3000"
+            }
+          ]
+        }
+      ]
+    },
+    "Logical-Mathematical": {
+      "subcategories": [
+        {
+          "subcategory": "Data Analysis",
+          "jobs": [
+            {
+              "job_title": "Data Analyst",
+              "job_link": "https://example.com/data-analyst"
+            },
+            {
+              "job_title": "Statistician",
+              "job_link": "https://example.com/statistician"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Data Science Bootcamp",
+              "course_link": "https://example.com/data-science-bootcamp",
+              "cost": "INR8000"
+            }
+          ]
+        },
+        {
+          "subcategory": "Engineering",
+          "jobs": [
+            {
+              "job_title": "Software Engineer",
+              "job_link": "https://example.com/software-engineer"
+            },
+            {
+              "job_title": "Systems Engineer",
+              "job_link": "https://example.com/systems-engineer"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Software Engineering Course",
+              "course_link": "https://example.com/software-engineering-course",
+              "cost": "INR5000"
+            }
+          ]
+        }
+      ]
+    },
+    "Interpersonal": {
+      "subcategories": [
+        {
+          "subcategory": "Counseling",
+          "jobs": [
+            {
+              "job_title": "School Counselor",
+              "job_link": "https://example.com/school-counselor"
+            },
+            {
+              "job_title": "Therapist",
+              "job_link": "https://example.com/therapist"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Counseling Certification Program",
+              "course_link": "https://example.com/counseling-certification",
+              "cost": "INR6000"
+            }
+          ]
+        },
+        {
+          "subcategory": "Team Leadership",
+          "jobs": [
+            {
+              "job_title": "Project Manager",
+              "job_link": "https://example.com/project-manager"
+            },
+            {
+              "job_title": "Human Resources Manager",
+              "job_link": "https://example.com/hr-manager"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Project Management Certification",
+              "course_link": "https://example.com/project-management-certification",
+              "cost": "INR4000"
+            }
+          ]
+        }
+      ]
+    },
+    "Visual-Spatial": {
+      "subcategories": [
+        {
+          "subcategory": "Design",
+          "jobs": [
+            {
+              "job_title": "Graphic Designer",
+              "job_link": "https://example.com/graphic-designer"
+            },
+            {
+              "job_title": "Interior Designer",
+              "job_link": "https://example.com/interior-designer"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Graphic Design Course",
+              "course_link": "https://example.com/graphic-design-course",
+              "cost": "INR3000"
+            }
+          ]
+        },
+        {
+          "subcategory": "Architecture",
+          "jobs": [
+            {
+              "job_title": "Architect",
+              "job_link": "https://example.com/architect"
+            },
+            {
+              "job_title": "Urban Planner",
+              "job_link": "https://example.com/urban-planner"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Architecture Degree Program",
+              "course_link": "https://example.com/architecture-degree",
+              "cost": "INR2000"
+            }
+          ]
+        }
+      ]
+    },
+    "Kinesthetic": {
+      "subcategories": [
+        {
+          "subcategory": "Education",
+          "jobs": [
+            {
+              "job_title": "Physical Education Teacher",
+              "job_link": "https://example.com/pe-teacher"
+            },
+            {
+              "job_title": "Sports Coach",
+              "job_link": "https://example.com/sports-coach"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Physical Education Certification",
+              "course_link": "https://example.com/pe-certification",
+              "cost": "INR2500"
+            }
+          ]
+        },
+        {
+          "subcategory": "Arts",
+          "jobs": [
+            {
+              "job_title": "Dancer",
+              "job_link": "https://example.com/dancer"
+            },
+            {
+              "job_title": "Actor",
+              "job_link": "https://example.com/actor"
+            }
+          ],
+          "courses": [
+            {
+              "course_title": "Acting Workshop",
+              "course_link": "https://example.com/acting-workshop",
+              "cost": "INR3000"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+
+
+
+

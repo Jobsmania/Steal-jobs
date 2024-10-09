@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #028cfe;
+        }
+
+        header {
+            margin-top: 20px;
+        }
+
+        #quiz-section {
+            margin: 50px auto;
+            width: 60%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #question-box {
+            margin-bottom: 20px;
+            font-size: 28px; /* Increased font size */
+        }
+
+        #options {
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 22px; /* Increased font size for options */
+        }
+
+        #submit-btn, #restart-btn, #start-btn {
+            background-color: #4285F4; 
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s; 
+            font-size: 22px; /* Increased font size for buttons */
+            display: block;
+            margin: 0 auto;
+        }
+
+        #submit-btn:hover, #restart-btn:hover, #start-btn:hover {
+            background-color: #34A853; 
+            transform: translateY(-3px); 
+        }
+
+        #start-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        #start-box {
+            background-color: #f1df12; 
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        #level-select {
+            margin-right: 10px; 
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #F4B400; 
+            color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            font-size: 26px;
+            font-weight: bold;
+            color: #EA4335; 
+            margin-top: 20px;
+            display: none;
+        }
+
+        #recommendations {
+            font-size: 20px;
+            color: #555;
+            margin-top: 10px;
+            display: none; 
+            background-color: #e1f5fe; 
+            border: 2px solid #2196f3; 
+            border-radius: 10px; 
+            padding: 15px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+            text-align: left; 
+            width: 60%; 
+            margin: 10px auto; 
+        }
+
+        #restart-container {
+            display: flex;
+            justify-content: center; 
+            margin-top: 20px; 
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Test Your IQ</h1>
+        <p>We Wish you all the best!</p>
+    </header>
+
+    <section id="start-section">
+        <div id="start-box">
+            <select id="level-select">
+                <option value="easy">Easy</option>
+                <option value="moderate">Moderate</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button id="start-btn">Start Test</button>
+        </div>
+    </section>
+
+    <section id="quiz-section" style="display:none;">
+        <div id="question-box">
+            <p id="question-text">Question will appear here</p>
+        </div>
+
+        <div id="options">
+            <!-- Radio buttons for options will be added dynamically -->
+        </div>
+
+        <button id="submit-btn">Submit Answer</button>
+    </section>
+
+    <p id="result"></p>
+    <div id="recommendations"></div>
+    <div id="restart-container">
+        <button id="restart-btn">Restart Test</button>
+    </div>
+
+    <script>
+        const questions = {
+            easy: [
+                { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correct: "4" },
+                { question: "Which shape has three sides?", options: ["Square", "Triangle", "Circle", "Hexagon"], correct: "Triangle" },
+                { question: "What color do you get when you mix red and white?", options: ["Pink", "Purple", "Orange", "Brown"], correct: "Pink" },
+                { question: "What is the capital of France?", options: ["Rome", "Madrid", "Berlin", "Paris"], correct: "Paris" },
+                { question: "Which number is odd?", options: ["2", "4", "6", "9"], correct: "9" },
+                { question: "How many days are in a leap year?", options: ["365", "366", "364", "370"], correct: "366" },
+                { question: "What is 10 - 3?", options: ["7", "6", "8", "5"], correct: "7" },
+                { question: "Which animal barks?", options: ["Cat", "Dog", "Cow", "Horse"], correct: "Dog" },
+                { question: "What is the sum of 5 and 7?", options: ["11", "12", "13", "14"], correct: "12" },
+                { question: "What shape is a soccer ball?", options: ["Square", "Rectangle", "Sphere", "Triangle"], correct: "Sphere" }
+            ],
+            moderate: [
+                { question: "What comes next in the series: 2, 4, 8, 16, ?", options: ["18", "24", "32", "48"], correct: "32" },
+                { question: "Which of these numbers is a prime number?", options: ["4", "6", "7", "9"], correct: "7" },
+                { question: "What is the capital of Japan?", options: ["Seoul", "Beijing", "Tokyo", "Bangkok"], correct: "Tokyo" },
+                { question: "Which gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], correct: "Carbon Dioxide" },
+                { question: "What is the main ingredient in guacamole?", options: ["Tomato", "Avocado", "Pepper", "Onion"], correct: "Avocado" },
+                { question: "What is the value of pi to two decimal places?", options: ["3.14", "3.16", "3.15", "3.13"], correct: "3.14" },
+                { question: "Which element has the chemical symbol O?", options: ["Osmium", "Oxygen", "Gold", "Silver"], correct: "Oxygen" },
+                { question: "How many planets are in our solar system?", options: ["8", "9", "7", "10"], correct: "8" },
+                { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Silver"], correct: "Diamond" },
+                { question: "What is the freezing point of water?", options: ["0°C", "100°C", "32°F", "212°F"], correct: "0°C" }
+            ],
+            hard: [
+                { question: "What comes next in the Fibonacci sequence: 1, 1, 2, 3, 5, 8, ?", options: ["13", "11", "9", "15"], correct: "13" },
+                { question: "Which mathematician is known as the father of geometry?", options: ["Euclid", "Newton", "Pythagoras", "Archimedes"], correct: "Euclid" },
+                { question: "What is the chemical formula for water?", options: ["H2O", "CO2", "O2", "NaCl"], correct: "H2O" },
+                { question: "What is the largest prime number less than 100?", options: ["89", "97", "91", "99"], correct: "97" },
+                { question: "What is the capital city of Australia?", options: ["Sydney", "Canberra", "Melbourne", "Brisbane"], correct: "Canberra" },
+                { question: "What is the derivative of x^2?", options: ["2x", "x", "x^2", "3x"], correct: "2x" },
+                { question: "What is the Pythagorean theorem?", options: ["a^2 + b^2 = c^2", "a + b = c", "a - b = c", "a/b = c"], correct: "a^2 + b^2 = c^2" },
+                { question: "Who developed the theory of relativity?", options: ["Newton", "Einstein", "Galileo", "Hawking"], correct: "Einstein" },
+                { question: "What is the square root of 256?", options: ["14", "15", "16", "17"], correct: "16" },
+                { question: "Which scientist proposed the laws of motion?", options: ["Einstein", "Newton", "Hawking", "Galileo"], correct: "Newton" }
+            ]
+        };
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let totalQuestions = 0;
+        let selectedLevel = '';
+
+        window.onload = () => {
+            document.getElementById('start-btn').onclick = startTest;
+            document.getElementById('submit-btn').onclick = submitAnswer;
+            document.getElementById('restart-btn').onclick = restartTest;
+        };
+
+        function startTest() {
+            selectedLevel = document.getElementById('level-select').value;
+            totalQuestions = questions[selectedLevel].length;
+            document.getElementById('start-section').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const levelQuestions = questions[selectedLevel];
+            const questionText = document.getElementById('question-text');
+            const optionsDiv = document.getElementById('options');
+
+            if (currentQuestionIndex < levelQuestions.length) {
+                questionText.innerText = levelQuestions[currentQuestionIndex].question;
+                optionsDiv.innerHTML = '';
+
+                levelQuestions[currentQuestionIndex].options.forEach(option => {
+                    optionsDiv.innerHTML += `<label><input type="radio" name="answer" value="${option}"> ${option}</label><br>`;
+                });
+            } else {
+                displayResult();
+            }
+        }
+
+        function submitAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            const levelQuestions = questions[selectedLevel];
+
+            if (selectedAnswer && selectedAnswer.value === levelQuestions[currentQuestionIndex].correct) {
+                score++;
+            }
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < levelQuestions.length) {
+                loadQuestion();
+            } else {
+                displayResult();
+            }
+        }
+
+        function displayResult() {
+            const percentageScore = Math.round((score / totalQuestions) * 100);
+            document.getElementById('result').innerText = `Test complete! You scored ${percentageScore}% (${score} out of ${totalQuestions})`;
+            document.getElementById('result').style.display = 'block';
+
+            const recommendations = document.getElementById('recommendations');
+            if (percentageScore < 50) {
+                recommendations.innerHTML = `
+                    <h3><center>Recommendations for Improvement:</center></h3>
+                    <ul>
+                        <li>Consider developing emotional intelligence skills.</li>
+                        <li>Engage in practical skill development workshops.</li>
+                        <li>Utilize educational resources like workbooks and online courses.</li>
+                        <li>Participate in problem-solving games and puzzles.</li>
+                        <li>Seek mentorship and build a support network.</li>
+                    </ul>
+                `;
+                recommendations.style.display = 'block';
+            } else {
+                recommendations.style.display = 'none';
+            }
+
+            // Clear options, hide submit button, show restart button
+            document.getElementById('options').innerHTML = '';
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'none';
+            document.getElementById('restart-container').style.display = 'flex';
+        }
+
+        function restartTest() {
+            score = 0;
+            currentQuestionIndex = 0;
+            document.getElementById('result').innerText = '';
+            document.getElementById('restart-container').style.display = 'none';
+            document.getElementById('submit-btn').style.display = 'none'; // Hide submit button initially
+            document.getElementById('recommendations').innerHTML = '';
+            document.getElementById('recommendations').style.display = 'none'; 
+            document.getElementById('quiz-section').style.display = 'none'; 
+            document.getElementById('start-section').style.display = 'flex'; // Show start section
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

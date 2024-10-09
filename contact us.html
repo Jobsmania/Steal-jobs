@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+    }
+
+    .contact-container {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.06);
+      max-width: 800px;
+      width: 100%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 8px 20px rgba(0, 114, 255, 0.2);
+      transform: translateY(-5px);
+      outline: none;
+    }
+
+    textarea {
+      height: 150px;
+      resize: none;
+    }
+
+    .submit-btn {
+      background-color: #0072ff;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0, 114, 255, 0.3);
+    }
+
+    .submit-btn:hover {
+      background-color: #005bb5;
+      transform: translateY(-3px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Stylish 3D info section */
+    .contact-info {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .contact-info h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.75rem;
+    }
+
+    .contact-info p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    /* Add hover effect to the input fields */
+    input:hover, textarea:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px rgba(0, 114, 255, 0.1);
+    }
+
+    /* Adding simple responsive adjustments */
+    @media (max-width: 768px) {
+      .contact-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      input, textarea, .submit-btn {
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p>Email: contact@stealjobs.com</p>
+      <p>Phone: +123 456 7890</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myers-Briggs Personality Test</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        .question {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .progress {
+            margin: 20px 0;
+            height: 20px;
+            background: #007bff;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        .result {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .reset-button {
+            background-color: #dc3545;
+        }
+        .reset-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBTI Personality Test</h1>
+    <div class="progress" id="progress" style="width: 0%;"></div>
+    <div id="question-container" class="question"></div>
+    <button id="optionA" class="button" onclick="answer('A')"></button>
+    <button id="optionB" class="button" onclick="answer('B')"></button>
+    <button class="button reset-button" onclick="resetTest()">Restart Test</button>
+    <div id="result-container" class="result"></div>
+</div>
+
+<script>
+    const questions = [
+        { question: "You prefer to:", optionA: "A) Spend time alone", optionB: "B) Spend time with others" },
+        { question: "You focus on:", optionA: "A) The big picture", optionB: "B) The details" },
+        { question: "You tend to be:", optionA: "A) More logical", optionB: "B) More empathetic" },
+        { question: "You prefer:", optionA: "A) A structured plan", optionB: "B) Flexibility and spontaneity" },
+        { question: "You are more comfortable:", optionA: "A) In a busy environment", optionB: "B) In a quiet one" },
+        { question: "You make decisions based on:", optionA: "A) Facts and data", optionB: "B) Feelings and values" },
+        { question: "You like to:", optionA: "A) Finish things", optionB: "B) Keep options open" },
+        { question: "You tend to:", optionA: "A) Follow your instincts", optionB: "B) Think things through" },
+        { question: "You prefer:", optionA: "A) Clear rules", optionB: "B) Adaptability" },
+        { question: "You enjoy:", optionA: "A) Planning ahead", optionB: "B) Going with the flow" },
+        { question: "You are energized by:", optionA: "A) Interaction with others", optionB: "B) Time spent alone" },
+        { question: "In a group, you are:", optionA: "A) The leader", optionB: "B) The supporter" },
+        { question: "When it comes to work, you prefer:", optionA: "A) Clear instructions", optionB: "B) General guidelines" },
+        { question: "You feel more comfortable:", optionA: "A) Sticking to routines", optionB: "B) Trying new things" },
+        { question: "You are more likely to:", optionA: "A) Trust your gut", optionB: "B) Analyze the situation" },
+        { question: "You would rather:", optionA: "A) Work alone", optionB: "B) Collaborate with a team" },
+        { question: "In discussions, you focus on:", optionA: "A) The facts", optionB: "B) The emotions" },
+        { question: "You prefer to:", optionA: "A) Plan everything", optionB: "B) Be spontaneous" },
+        { question: "When faced with a challenge, you:", optionA: "A) Seek practical solutions", optionB: "B) Explore different possibilities" },
+        { question: "You tend to be:", optionA: "A) More reserved", optionB: "B) More outgoing" },
+        { question: "In your social life, you prefer:", optionA: "A) Deep conversations", optionB: "B) Light-hearted chats" }
+    ];
+
+    const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+    let currentQuestionIndex = 0;
+
+    function loadQuestion() {
+        if (currentQuestionIndex < questions.length) {
+            const question = questions[currentQuestionIndex];
+            document.getElementById("question-container").innerText = question.question;
+            document.getElementById("optionA").innerText = question.optionA;
+            document.getElementById("optionB").innerText = question.optionB;
+
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById("progress").style.width = progressPercentage + "%";
+        } else {
+            showResult();
+        }
+    }
+
+    function answer(option) {
+        if (currentQuestionIndex === 0) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 1) { scores[option === 'A' ? 'N' : 'S']++; }
+        else if (currentQuestionIndex === 2) { scores[option === 'A' ? 'T' : 'F']++; }
+        else if (currentQuestionIndex === 3) { scores[option === 'A' ? 'J' : 'P']++; }
+        else if (currentQuestionIndex === 4) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 5) { scores[option === 'A' ? 'T' : 'F']++; }
+        else if (currentQuestionIndex === 6) { scores[option === 'A' ? 'J' : 'P']++; }
+        else if (currentQuestionIndex === 7) { scores[option === 'A' ? 'N' : 'S']++; }
+        else if (currentQuestionIndex === 8) { scores[option === 'A' ? 'J' : 'P']++; }
+        else if (currentQuestionIndex === 9) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 10) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 11) { scores[option === 'A' ? 'N' : 'S']++; }
+        else if (currentQuestionIndex === 12) { scores[option === 'A' ? 'T' : 'F']++; }
+        else if (currentQuestionIndex === 13) { scores[option === 'A' ? 'J' : 'P']++; }
+        else if (currentQuestionIndex === 14) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 15) { scores[option === 'A' ? 'T' : 'F']++; }
+        else if (currentQuestionIndex === 16) { scores[option === 'A' ? 'J' : 'P']++; }
+        else if (currentQuestionIndex === 17) { scores[option === 'A' ? 'N' : 'S']++; }
+        else if (currentQuestionIndex === 18) { scores[option === 'A' ? 'I' : 'E']++; }
+        else if (currentQuestionIndex === 19) { scores[option === 'A' ? 'N' : 'S']++; }
+
+        currentQuestionIndex++;
+        loadQuestion();
+    }
+
+    function calculateResult() {
+        let result = '';
+        result += scores.E > scores.I ? 'E' : 'I';
+        result += scores.S > scores.N ? 'S' : 'N';
+        result += scores.T > scores.F ? 'T' : 'F';
+        result += scores.J > scores.P ? 'J' : 'P';
+        return result;
+    }
+
+    function getPersonalityDescription(mbtiType) {
+        const descriptions = {
+            "INTJ": "The Architect: Strategic, logical, and independent.",
+            "INTP": "The Thinker: Analytical, objective, and inventive.",
+            "ENTJ": "The Commander: Natural leader, driven, and determined.",
+            "ENTP": "The Debater: Quick-witted, curious, and innovative.",
+            "INFJ": "The Advocate: Insightful, inspiring, and compassionate.",
+            "INFP": "The Mediator: Idealistic, loyal, and imaginative.",
+            "ENFJ": "The Protagonist: Charismatic, empathetic, and influential.",
+            "ENFP": "The Campaigner: Enthusiastic, creative, and sociable.",
+            "ISTJ": "The Logistician: Responsible, organized, and dependable.",
+            "ISFJ": "The Defender: Nurturing, practical, and loyal.",
+            "ESTJ": "The Executive: Efficient, orderly, and decisive.",
+            "ESFJ": "The Consul: Sociable, caring, and organized.",
+            "ISTP": "The Virtuoso: Adventurous, resourceful, and practical.",
+            "ISFP": "The Adventurer: Artistic, sensitive, and spontaneous.",
+            "ESTP": "The Entrepreneur: Energetic, bold, and perceptive.",
+            "ESFP": "The Entertainer: Fun-loving, spontaneous, and enthusiastic."
+        };
+        return descriptions[mbtiType] || "No description available.";
+    }
+
+    function showResult() {
+        const result = calculateResult();
+        const description = getPersonalityDescription(result);
+        document.getElementById("question-container").style.display = "none";
+        document.getElementById("optionA").style.display = "none";
+        document.getElementById("optionB").style.display = "none";
+        document.getElementById("result-container").innerText = `Your MBTI type is: ${result}\n\n${description}`;
+        document.getElementById("result-container").style.display = "block";
+    }
+
+    function resetTest() {
+        currentQuestionIndex = 0;
+        Object.keys(scores).forEach(key => scores[key] = 0);
+        document.getElementById("result-container").style.display = "none";
+        document.getElementById("question-container").style.display = "block";
+        document.getElementById("optionA").style.display = "block";
+        document.getElementById("optionB").style.display = "block";
+        document.getElementById("progress").style.width = "0%";
+        loadQuestion();
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
+
